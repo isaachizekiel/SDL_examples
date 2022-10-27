@@ -13,3 +13,6 @@ target_link_libraries(SDL_init ${SDL2_LIBRARIES})
 add_executable(SDL_init_video_display SDL_init_video_display.c)
 target_link_libraries(SDL_init_video_display ${SDL2_LIBRARIES})
 
+add_executable(SDL_setup_display SDL_setup_display.c)
+target_link_libraries(SDL_setup_display ${SDL2_LIBRARIES})
+
