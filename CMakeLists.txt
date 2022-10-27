@@ -9,3 +9,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(SDL_init SDL_init.c)
 target_link_libraries(SDL_init ${SDL2_LIBRARIES})
+
+add_executable(SDL_init_video_display SDL_init_video_display.c)
+target_link_libraries(SDL_init_video_display ${SDL2_LIBRARIES})
+

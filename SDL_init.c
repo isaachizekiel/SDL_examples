@@ -1,4 +1,3 @@
-#include <SDL_error.h>
 #include <stdio.h>
 #include <SDL.h>
 
