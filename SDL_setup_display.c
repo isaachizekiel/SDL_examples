@@ -1,4 +1,7 @@
 #include <SDL.h>
+#include <SDL_events.h>
+#include <SDL_render.h>
+#include <stdio.h>
 
 /*
   we can think of the structure of a game as follows
@@ -34,6 +37,24 @@ int init(const char *title, int xpos, int ypos, int h, int w, int flags) {
   return 1;
 }
 
+
+void handle_event() {
+  SDL_Event event;
+
+  if (SDL_PollEvent(&event)) {
+    switch(event.type) {
+    case SDL_QUIT:
+      g_bRunning = 0;
+      break;
+
+    default:
+      break;
+    }
+  }
+}
+
+void update() {}
+
 void render() {
   /* every thing successed let draw the window */
   SDL_SetRenderDrawColor(g_pRenderer, 0, 0, 0, 255);
@@ -43,7 +64,13 @@ void render() {
 
   // show the window
   SDL_RenderPresent(g_pRenderer);
-  
+}
+
+void clean() {
+  fprintf(stdout, "cleaning game\n");
+  SDL_DestroyWindow(g_pWindow);
+  SDL_DestroyRenderer(g_pRenderer);
+  SDL_Quit();
 }
 
 int main() {
@@ -55,14 +82,13 @@ int main() {
   }
 
   while (g_bRunning) {
+    handle_event();
+    update();      
     render();
   }
   
-  // clean SDL
-  SDL_Quit();
+  clean();
 
   return 0;
-  
-
   
 }
